@@ -1,0 +1,7 @@
+{
+  "cloud": {
+    "framework": "nextjs",
+    "buildCommand": "cd \"Lighhouse Main Application\" && npm run build",
+    "publishDir": "Lighhouse Main Application/.next"
+  }
+}

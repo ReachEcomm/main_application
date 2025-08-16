@@ -1,0 +1,35 @@
+name: CI / Build & Deploy Webflow (root)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies and build (subfolder)
+        run: |
+          cd "Lighhouse Main Application"
+          npm ci
+          npm run build
+
+      - name: Deploy to Webflow Cloud (subfolder)
+        if: ${{ secrets.WEBFLOW_CLOUD_TOKEN != '' }}
+        env:
+          WEBFLOW_CLOUD_TOKEN: ${{ secrets.WEBFLOW_CLOUD_TOKEN }}
+        run: |
+          cd "Lighhouse Main Application"
+          npm run deploy
+
+      - name: Skip deploy if token missing
+        if: ${{ secrets.WEBFLOW_CLOUD_TOKEN == '' }}
+        run: echo "WEBFLOW_CLOUD_TOKEN not set — skipping deploy. Add the secret in repository settings to enable automatic deploys."
