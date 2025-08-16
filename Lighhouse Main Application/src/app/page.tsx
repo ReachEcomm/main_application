@@ -1,6 +1,7 @@
 "use client";
 
 import { Section, Block, Link } from "@/devlink/_Builtin";
+import ApprovalForm from "@/components/ApprovalForm";
 
 export default function Home() {
   return (
@@ -56,6 +57,10 @@ export default function Home() {
             >
               Get Started
             </Link>
+          </div>
+          {/* Insert approval form below hero */}
+          <div style={{ marginTop: 36 }}>
+            <ApprovalForm />
           </div>
         </Block>
       </Block>
