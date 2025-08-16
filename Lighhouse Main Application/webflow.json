@@ -1,6 +1,8 @@
 {
   "cloud": {
-    "framework": "nextjs"
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "publishDir": ".next"
   },
   "devlink": {
     "rootDir": "./src/devlink",
